@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sam Jamali — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:    #f5f0e8;
+      --cream2:   #ede7d9;
+      --bg-white: #faf8f4;
+      --terra:    #c96442;
+      --terra-dk: #a84f32;
+      --brown:    #3d2b1f;
+      --ink:      #1a1008;
+      --muted:    #8a7060;
+      --border:   #d9cfc2;
+      --card:     #ffffff;
+      --serif:    'Source Serif 4', Georgia, serif;
+      --sans:     'DM Sans', system-ui, sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg-white);
+      color: var(--ink);
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,248,244,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    .nav-logo {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      font-weight: 400;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--terra); }
+
+    /* ── HERO ── */
+    header {
+      padding: 9rem 6vw 7rem;
+      border-bottom: 1px solid var(--border);
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-eyebrow {
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terra);
+      margin-bottom: 1.2rem;
+    }
+
+    h1 {
+      font-family: var(--sans);
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 600;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .meta-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.2rem 1.5rem;
+    }
+
+    .meta-label {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.3rem;
+    }
+
+    .meta-value {
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    .meta-value span { color: var(--terra); font-weight: 500; }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 6rem 6vw;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .section-num {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      color: var(--terra);
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-family: var(--sans);
+      font-size: clamp(1.5rem, 2.5vw, 2rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+
+    /* ── PROJECT CARDS ── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2.2rem;
+      transition: box-shadow 0.25s, border-color 0.25s, transform 0.25s;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 6px 32px rgba(0,0,0,0.07);
+      border-color: rgba(201,100,66,0.3);
+      transform: translateY(-2px);
+    }
+
+    .project-date {
+      font-family: var(--sans);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      color: var(--terra);
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .project-name {
+      font-family: var(--sans);
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .project-desc {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      font-weight: 300;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1.5rem;
+    }
+
+    .ptag {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--brown);
+      background: var(--cream2);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.7rem;
+      border-radius: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── COURSES ── */
+    .courses-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .course-group-title {
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.2rem;
+    }
+
+    .course-group-title.completed { color: var(--terra); }
+    .course-group-title.planned   { color: var(--muted); }
+
+    .course-list { list-style: none; }
+
+    .course-list li {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--ink);
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--cream2);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 300;
+    }
+
+    .course-list li:last-child { border-bottom: none; }
+
+    .course-list li::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--terra);
+      flex-shrink: 0;
+    }
+
+    .course-list li.planned::before {
+      background: transparent;
+      border: 1.5px solid var(--muted);
+    }
+
+    .course-list li.planned { color: --ink; font-style: italic; }
+
+    .course-desc {
+    display: block;
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.4;
+    margin-top: 0.2rem;
+    font-style: italic;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .skill-block {
+      padding: 1.8rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--cream);
+    }
+
+    .skill-block h4 {
+      font-family: var(--sans);
+      font-size: 0.92rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: var(--brown);
+      margin-bottom: 0.7rem;
+    }
+
+    .skill-block p {
+      font-family: var(--serif);
+      font-size: 1.0rem;
+      color: var(--ink);
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* ── CONTACT ── */
+    .contact-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .contact-intro {
+      font-size: 1.1rem;
+      color: var(--ink);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.65;
+    }
+
+    .contact-details { display: flex; flex-direction: column; gap: 1rem; }
+
+    .contact-row {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      background: var(--card);
+    }
+
+    .contact-label {
+      font-family: var(--sans);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .contact-value {
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      color: var(--ink);
+    }
+
+    .contact-value a { color: var(--terra); text-decoration: none; }
+    .contact-value a:hover { color: var(--terra-dk); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--cream2);
+      border-top: 1px solid var(--border);
+      padding: 2rem 6vw;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      font-family: var(--sans);
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+
+    /* ── FADE IN ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(14px);
+      animation: fadeUp 0.6s forwards;
+    }
+    .fade-in:nth-child(1) { animation-delay: 0.05s; }
+    .fade-in:nth-child(2) { animation-delay: 0.2s; }
+    .fade-in:nth-child(3) { animation-delay: 0.35s; }
+    .fade-in:nth-child(4) { animation-delay: 0.5s; }
+
+    @keyframes fadeUp { to { opacity: 1; transform: none; } }
+
+    @media (max-width: 720px) {
+      header { grid-template-columns: 1fr; padding: 5rem 6vw 4rem; }
+      .courses-layout { grid-template-columns: 1fr; }
+      .contact-body { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Sam Jamali</span>
+  <ul class="nav-links">
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#courses">Courses</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<header>
+  <div class="hero-left">
+    <p class="hero-eyebrow fade-in">Portfolio</p>
+    <h1 class="fade-in">Sam<br/>Jamali</h1>
+    <p class="hero-desc fade-in">Electronic Systems Engineering Technology student building embedded systems, circuit designs, and network infrastructure.</p>
+  </div>
+  <div class="hero-right fade-in">
+    <div class="meta-card">
+      <div class="meta-label">University</div>
+      <div class="meta-value">Texas A&M University <span>·</span> College Station</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-label">Degree</div>
+      <div class="meta-value">B.S. Electronic Systems Engineering Technology</div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-label">GPA</div>
+      <div class="meta-value"><span>3.25</span> TAMU &nbsp;·&nbsp; <span>4.0</span> TAMUCC </div>
+    </div>
+    <div class="meta-card">
+      <div class="meta-label">Expected Graduation</div>
+      <div class="meta-value">May 2028</div>
+    </div>
+  </div>
+</header>
+
+<section class="section" id="projects">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Projects</h2>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-date">December 2025</div>
+      <div class="project-name">IR Remote Light Switch</div>
+      <p class="project-desc">Designed and programmed an Arduino microcontroller in C using Arduino IDE with an IR receiver to control a stepper motor. IR inputs from a remote activate the motor to toggle a physical light switch on and off. Built a custom enclosure to house all components.</p>
+      <div class="project-tags">
+        <span class="ptag">Arduino</span>
+        <span class="ptag">C</span>
+        <span class="ptag">IR Receiver</span>
+        <span class="ptag">Stepper Motor</span>
+        <span class="ptag">Embedded Systems</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-date">November 2025</div>
+      <div class="project-name">PWM Speed Controller</div>
+      <p class="project-desc">Designed a state diagram and implemented it in a logic circuit simulation using logic gates, comparators, and flip-flops. Uploaded the design to hardware and used physical switches to step motor speed from 0% to 90% duty cycle in 15% increments.</p>
+      <div class="project-tags">
+        <span class="ptag">PWM</span>
+        <span class="ptag">Logic Gates</span>
+        <span class="ptag">Flip-Flops</span>
+        <span class="ptag">State Machines</span>
+        <span class="ptag">Motor Control</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-date">April 2026</div>
+      <div class="project-name">STM32 Assembly Cyclone Arcade Game</div>
+      <p class="project-desc">Designed and built the cyclone arcade game on an STM32 with assembly code only with the addition of an LED to keep the user updated on the state of the game and keep scrore. After ever correct button press the user's score is increased and the speed of the LEDs bouncing from end to end also increases, making the game more difficult as you progress.</p>
+      <div class="project-tags">
+        <span class="ptag">STM32</span>
+        <span class="ptag">Assembly</span>
+        <span class="ptag">LCD Screen</span>
+        <span class="ptag">LED control</span>
+        <span class="ptag">Embedded Systems</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="section" id="courses">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Related Coursework</h2>
+  </div>
+  <div class="courses-layout">
+    <div>
+      <div class="course-group-title completed">Completed</div>
+      
+      <p class="meta-label" style="margin-top: 1rem;">Academic Year 2025 - 2026</p>
+      <ul class="course-list">
+        <li>DC Circuit Analysis</li>
+        <span class="course-desc">Focus on Kirchhoff's laws, mesh and nodal analysis, and Thevenin/Norton equivalnets.</span>
+        <li>Digital Electronics</li>
+        <span class="course-desc">Digital applications, number systems, digital logic devices and circuits, including sequential logic.</span>
+        <li>Embedded Systems Development in C</li>
+        <span class="course-desc">Introduction to C programming and embedded microcontroller systems.</span>
+        <li>Microcontroller Architecture &amp; Low level Assembly programming</li>
+        <span class="course-desc">Functions and types of microcontrollers, low level instruction sets and how they are programmed.</span>
+        <li>Network Infrastructure &amp; Programming</li>
+        <span class="course-desc">Study of LANs and MANs, including network design, operation, protocols, hardware, security, cabling, and Internet/TCP/IP communication systems.</span>
+        <li>Power Systems &amp; Circuit Applications</li>
+        <span class="course-desc">Study of energy systems and AC circuits, including power generation, motors, circuit analysis methods, filters, waveforms, measurements, and simulation using Multisim.</span>
+        <li>Six Sigma &amp; Applied Statistics</li>
+        <span class="course-desc">Study of probability and statistics for electronics, including distributions, data analysis, troubleshooting, and Six Sigma quality improvement tools.</span>
+      </ul>
+
+    
+    </div>
+
+    <div>
+      <div class="course-group-title planned">Planned</div>
+      
+      <p class="meta-label" style="margin-top: 1rem;">Academic Year 2026 - 2027</p>
+      <ul class="course-list">
+        <li class="planned">Analog Electronics</li>
+        <span class="course-desc">Study of semiconductor devices such as diodes, transistors, and operational amplifiers, with applications in signal conditioning, power supplies, filters, amplifiers, and switching circuits.</span>
+        <li class="planned">Embedded Systems Software</li>
+        <span class="course-desc">Study of embedded computer software systems with emphasis on real-time systems, programming techniques, and development methodologies.</span>
+        <li class="planned">Electronics Testing</li>
+        <span class="course-desc">Study of electronic device and system testing, including test planning, specifications, measurements, calibration, sampling theory, and signal processing methods.</span>
+        <li class="planned">Electromagnetics and High Frequency Systems</li>
+        <span class="course-desc">Study of high-frequency concepts including electromagnetics, transmission lines, antennas, RF circuit design, wireless communication, fiber optics, and PCB layout.</span>
+        <li class="planned">Electronic Instrumentation</li>
+        <span class="course-desc">Study of control systems, sensors, data conversion, signal conditioning, biomedical transducers, digital signal processing, and computer-based data acquisition.</span>
+        <li class="planned">Advanaced Network Systems and security</li>
+        <span class="course-desc">Study of advanced network systems and security, including routing protocols, IPv6, NAT, DNS, VPNs, socket programming, and cryptographic protocols.</span>
+      </ul>
+
+      <p class="meta-label" style="margin-top: 1.5rem;">Academic Year 2027 - 2028</p>
+      <ul class="course-list">
+        <li class="planned">Control Systems</li>
+        <span class="course-desc">Study of automated control systems, including transfer functions, Laplace and Z transforms, feedback theory, simulation, and computer-based control systems.</span>
+        <li class="planned">Wireless Transmission Systems </li>
+        <span class="course-desc">Study of microwave, satellite, and cellular communication systems, including power budgets, propagation analysis, modulation, and practical engineering considerations.</span>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Skills</h2>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-block">
+      <h4>Embedded Hardware &amp; Programming</h4>
+      <p>C for embedded microcontroller applications. Python with GUI development for rapid tooling. ARM assembly and microcontroller architecture for STM32 architecture.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Circuit Design &amp; Analysis</h4>
+      <p>Proficient with oscilloscopes, bench power supplies, and digital multimeters. Skilled at troubleshooting series, parallel, and complex DC and AC circuits.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Networking &amp; IT</h4>
+      <p>Mainating, installing, and troubleshooting networking equipment such as switches, aaccess points, and VOIP phoens across 30 schools. IT support for over 500 staff, faculty, and students.</p>
+    </div>
+    <div class="skill-block">
+      <h4>Cybersecurity</h4>
+      <p>Monitored and analyzed security tickets. Investigated malware using Microsoft Defender. Collaborated with IT teams to resolve incidents efficiently.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Contact</h2>
+  </div>
+  <div class="contact-body">
+    <p class="contact-intro">Open to internships, co-ops, and research opportunities in embedded systems, electronics, network engineering, and related positions.</p>
+    <div class="contact-details">
+      <div class="contact-row">
+        <span class="contact-label">Email</span>
+        <span class="contact-value"><a href="mailto:samjamali32@gmail.com">samjamali32@gmail.com</a></span>
+        <span class="contact-value"><a href="mailto:sjamali@tamu.com">sjamali@tamu.com</a></span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Phone</span>
+        <span class="contact-value">713-992-8714</span>
+      </div>
+      <div class="contact-row">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">College Station, Texas</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Sam Jamali</span>
+  <span>Electronic Systems Engineering Technology · Texas A&M University</span>
+</footer>
+
+</body>
+</html>
